@@ -9,12 +9,12 @@ const usuariosSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  telefone: {
-    type: String,
+  altura: {
+    type: Double,
     required: true,
   },
-  endereco: {
-    type: String,
+  peso: {
+    type: Double,
     required: true,
   },
   foto: {
