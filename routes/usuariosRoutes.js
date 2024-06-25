@@ -22,13 +22,13 @@ router.post('/', async (req, res) => {
   const usuarios = new Usuarios({
     nome: req.body.nome,
     email: req.body.email,
-    telefone: req.body.telefone,
-    endereco: req.body.endereco,
+    altura: req.body.altura,
+    peso: req.body.peso,
     foto: req.body.foto,
   });
 
   try {
-    const newUsuarios = await Usuarioso.save();
+    const newUsuarios = await Usuarios.save();
     res.status(201).json(newUsuarios);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -44,10 +44,10 @@ router.put('/:id', getUsuarios, async (req, res) => {
     res.usuarios.email = req.body.email;
   }
   if (req.body.telefone != null) {
-    res.usuarios.telefone = req.body.telefone;
+    res.usuarios.peso = req.body.peso;
   }
   if (req.body.endereco != null) {
-    res.usuarios.endereco = req.body.endereco;
+    res.usuarios.altura = req.body.altura;
   }
   if (req.body.foto != null) {
     res.usuarios.foto = req.body.foto;
@@ -73,7 +73,7 @@ router.delete('/:id', getUsuarios, async (req, res) => {
 
 async function getUsuarios(req, res, next) {
   try {
-    const usuarios = await usuarios.findById(req.params.id);
+    const usuarios = await Usuarios.findById(req.params.id);
     if (usuarios == null) {
       return res.status(404).json({ message: 'Usuario não encontrado' });
     }
